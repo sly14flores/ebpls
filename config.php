@@ -8,7 +8,7 @@ $pw = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $k ), base64_decode( $q )
 /* Database Configuration */
 $DB_HOST = "localhost";
 $DB_USER = "root";
-$DB_PWD	 = "$pw";
+$DB_PWD	 = "";
 $DB_FILE = "ebpls";
 $DB_PORT = 3306;
 
