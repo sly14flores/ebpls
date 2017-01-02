@@ -1283,10 +1283,26 @@ $app_id = $_POST['app_id'];
 $s = date("y");
 $pref = "B$s-";
 
-$str_an = explode("-",$prefno);
+$app_no = $pref."0001";
+
+$ref_appno_renewal = explode("-",$app_no);
+
+$sql = "SELECT application_no FROM applications WHERE application_no LIKE '$pref%' ORDER BY application_no DESC LIMIT 1";
+db_connect();
+$rs = $db_con->query($sql);
+$rc = $rs->num_rows;
+if ($rc) {
+	$rec = $rs->fetch_array();
+	if ($rec['application_no'] != "") {
+	$ref_appno_renewal = explode("-",$rec['application_no']);
+	$int_an = (int)$ref_appno_renewal[1] + 1;
+	$app_no = $pref . str_pad((string)$int_an, 4, '0', STR_PAD_LEFT);
+	}
+}
+db_close();
 
 $json  = '{ "refappno": [{';
-$json .= '"application_no":"' . $pref.$str_an[1] . '",';
+$json .= '"application_no":"' . $app_no . '",';
 $json .= '"application_reference_no":"' . $prefno . '"';
 $json .= '}] }';
 
@@ -1297,7 +1313,7 @@ $db_con->query($sql);
 $db_con->query($END_T);
 db_close();
 
-$sql = "UPDATE applications SET application_no = '".$pref.$str_an[1]."' WHERE application_id = $app_id";
+$sql = "UPDATE applications SET application_no = '".$app_no."' WHERE application_id = $app_id";
 db_connect();
 $db_con->query($START_T);
 $db_con->query($sql);
@@ -1526,11 +1542,12 @@ function genAppNo($id,$stat) {
 $s = date("y");
 $pref = "B$s-";
 
-$app_no = $pref . "1089"; // application number
+// $app_no = $pref . "1089"; // application number
+$app_no = $pref . "0001"; // application number
 
 global $db_con, $START_T, $END_T;
 
-$sql = "SELECT application_reference_no FROM applications WHERE application_reference_no LIKE 'B-%' ORDER BY application_reference_no DESC LIMIT 1";
+/* $sql = "SELECT application_reference_no FROM applications WHERE application_reference_no LIKE 'B-%' ORDER BY application_reference_no DESC LIMIT 1";
 db_connect();
 $rs = $db_con->query($sql);
 $rc = $rs->num_rows;
@@ -1538,6 +1555,20 @@ if ($rc) {
 	$rec = $rs->fetch_array();
 	if ($rec['application_reference_no'] != "") {
 	$str_an = explode("-",$rec['application_reference_no']);
+	$int_an = (int)$str_an[1] + 1;
+	$app_no = $pref . str_pad((string)$int_an, 4, '0', STR_PAD_LEFT);
+	}
+}
+db_close(); */
+
+$sql = "SELECT application_no FROM applications WHERE application_no LIKE '$pref%' ORDER BY application_no DESC LIMIT 1";
+db_connect();
+$rs = $db_con->query($sql);
+$rc = $rs->num_rows;
+if ($rc) {
+	$rec = $rs->fetch_array();
+	if ($rec['application_no'] != "") {
+	$str_an = explode("-",$rec['application_no']);
 	$int_an = (int)$str_an[1] + 1;
 	$app_no = $pref . str_pad((string)$int_an, 4, '0', STR_PAD_LEFT);
 	}

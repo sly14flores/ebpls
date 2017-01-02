@@ -84,7 +84,7 @@
 
 <?php include 'end.php'; ?>
 
-<script src="js/applications.js?ver=1.0.0.3"></script>
+<script src="js/applications.js?ver=1.0.0.4"></script>
 <input id="application_id" type="hidden" value="0">
 <input id="application_id_ref_no" type="hidden" value="">
 <input id="application_fid" type="hidden" value="0">

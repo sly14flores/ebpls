@@ -1648,6 +1648,7 @@ var aid = $('#application_id').val();
 
 if (!chk) return;
 
+$.blockUI({ message: '<h4 style="padding-top: 5px;"><img src="images/busy.gif" /> Please wait...</h4>' });
 $.ajax({
 	url: 'applications-ajax.php?p=ref_appno_renewal',
 	type: 'post',
@@ -1658,6 +1659,7 @@ $.ajax({
 			setTimeout(function() { if ($('#' + key)[0]) $('#'+key).val(value); },1000);
 			// if ($('#' + key)[0]) $('#'+key).val(value);
 		});
+		$.unblockUI();		
 	}
 });
 	
