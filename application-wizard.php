@@ -10,7 +10,7 @@ $closeB = '<input style="margin-right: 10px;" type="button" onclick="closePerson
 
 ?>
 <div class="form-group" style="margin-bottom: 40px;">
-	<label for="application_no">Application No.:&nbsp;&nbsp;</label><input id="application_no" class="form-control" type="text" onfocus="this.blur();" value="" style="width: 100px; display: inline;">
+	<label for="application_no">Application No.:&nbsp;&nbsp;</label><input id="application_no" class="form-control" type="text" value="" style="width: 100px; display: inline;">
 </div>
 <div id="personal-info-buttons-top" class="pull-right" style="margin-top: -35px;">
 <?php 
