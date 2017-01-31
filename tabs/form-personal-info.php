@@ -107,7 +107,7 @@ $editB = '<input type="button" onclick="editPersonalInfo();" class="btn btn-prim
 	<div class="col-sm-3">
 		<div class="form-group">
 			<label for="application_reference_no">Reference Number</label>
-			<input id="application_reference_no" class="form-control" type="text" onfocus="this.blur();" value="">
+			<input id="application_reference_no" class="form-control" type="text" value="">
 		</div>	
 	</div>
 	<div class="col-sm-3">
