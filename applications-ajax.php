@@ -91,6 +91,10 @@ $content = new content($arr_head);
 $str_response .= $content->header();
 
 $business_status = array(""=>"","operating"=>"Operating","not_renewed"=>"Not Renewed","closed_terminated"=>"Closed/Terminated","delinquent"=>"Delinquent");
+/*
+** delinquent permits
+*/
+$renewal_due = date("Y-01-20");
 $sql = "SELECT application_id, application_no, application_form, application_amendment, application_taxpayer_business_name, application_mode_of_payment, application_date, application_reference_no, application_dti_sec_cda, application_dti_sec_cda_date, application_organization_type, application_ctc_no, application_ctc_date, application_tin, application_entity, application_taxpayer_lastname, application_taxpayer_firstname, application_taxpayer_middlename, application_taxpayer_business_name, application_trade_franchise, application_treasurer_lastname, application_treasurer_firstname, application_treasurer_middlename, application_business_address_no, application_business_address_bldg, application_business_address_unit_no, application_business_address_street, application_business_address_brgy, application_business_address_subd, application_business_address_mun_city, application_business_address_province, application_business_address_tel_no, application_business_address_email, application_owner_address_no, application_owner_address_bldg, application_owner_address_unit_no, application_owner_address_street, application_owner_address_brgy, application_owner_address_subd, application_owner_address_mun_city, application_owner_address_province, application_owner_address_tel_no, application_owner_address_email, application_pin, application_business_area, application_no_employees, application_no_residing, application_lessor_lastname, application_lessor_firstname, application_lessor_middlename, application_monthly_rental, application_lessor_address_no, application_lessor_address_street, application_lessor_address_brgy, application_lessor_address_subd, application_lessor_address_mun_city, application_lessor_address_province, application_lessor_address_tel_no, application_lessor_address_email, application_contact_person, application_position_title, (concat(application_taxpayer_lastname, ', ', application_taxpayer_firstname, ' ', application_taxpayer_middlename)) full_name, (SELECT ba_line FROM business_activities WHERE ba_id = (SELECT aba_b_line FROM application_business_activities WHERE aba_fid = application_id)) business_line, business_status FROM applications $filter ORDER BY application_date DESC, application_no DESC, application_reference_no DESC $row_page";
 db_connect();
 $rs = $db_con->query($sql);
@@ -100,6 +104,10 @@ $c = 1;
 	for ($i=0; $i<$rc; ++$i) {
 		$rec = $rs->fetch_array();	
 		
+		$bs = $rec['business_status'];
+		if (strtotime(date("Y-m-d")) > strtotime($renewal_due)) {
+			
+		}
 		$arr_body[$i] = array(
 		$rec['application_id'],
 		$rec['application_reference_no'],
@@ -111,7 +119,7 @@ $c = 1;
 		$rec['application_taxpayer_business_name'],
 		$rec['business_line'],
 		$app_mode_of_payment[$rec['application_mode_of_payment']],
-		$business_status[$rec['business_status']],
+		$business_status[$bs],
 		'<a href="javascript: checkStatus(\'' . $rec['application_id'] . '\');" style="text-align: center;" data-toggle="tooltip" data-placement="top" title="Click to check application status for application no: ' . $rec['application_no'] . '"><img src="images/search-icon.png"></span>'
 		);		
 		
