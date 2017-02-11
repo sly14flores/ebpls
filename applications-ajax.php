@@ -105,9 +105,13 @@ $c = 1;
 		$rec = $rs->fetch_array();	
 		
 		$bs = $rec['business_status'];
-		if (strtotime(date("Y-m-d")) > strtotime($renewal_due)) {
-			
-		}
+		$succeeding_year = date("Y",strtotime("+1 Year",strtotime($rec['application_date'])));
+		$sql1 = "SELECT * FROM applications WHERE application_reference_no = '$rec[application_reference_no]' AND SUBSTRING(application_date,1,4) = $succeeding_year";
+		$rs1 = $db_con->query($sql1);
+		$rc1 = $rs1->num_rows;
+		if ($rc1 == 0) $bs = "delinquent";
+		else $bs = "operating";
+		if (date("Y",strtotime($rec['application_date'])) == date("Y")) $bs = "operating";
 		$arr_body[$i] = array(
 		$rec['application_id'],
 		$rec['application_reference_no'],

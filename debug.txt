@@ -14,3 +14,8 @@ ini_penalty
 
 
 
+
+INSERT INTO aba_items (aba_item_fid, aba_item_assessment, aba_item_amount, aba_item_penalty, aba_item_assessed_by, aba_item_aid) VALUES (3937, 1, 252, 0, 1, 1),(3937, 2, 198, 0, 1, 1),(3937, 3, 297, 0, 1, 1),(3937, 4, 330, 0, 1, 1),(3937, 8, 500, 0, 1, 1),(3937, 11, 20, 0, 1, 1),(3937, 13, 250, 0, 1, 1)
+
+
+

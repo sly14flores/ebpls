@@ -1,1 +1,7 @@
-ALTER TABLE `billing` CHANGE `payment_schedule_penalty` `payment_schedule_penalty` FLOAT(10) NOT NULL
+ALTER TABLE `aba_items` ADD INDEX(`aba_item_fid`)
+
+ALTER TABLE `aba_items` ENGINE = InnoDB
+
+ALTER TABLE `application_business_activities` ENGINE = InnoDB
+
+ALTER TABLE `aba_items` CHANGE `aba_item_fid` `aba_item_fid` INT(10) NOT NULL
