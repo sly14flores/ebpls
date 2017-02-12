@@ -1,5 +1,7 @@
 <?php
 
+var_dump($_GET); exit();
+
 $app_form = array(""=>"","new_app"=>"New","renew_app"=>"Renewal","additional_app"=>"Additional");
 
 $app_amendment = array(""=>"","single_partnership"=>"From Single to Partnership","single_corporation"=>"From Single to Corporation","partnership_single"=>"From Partnership to Single","partnership_corporation"=>"From Partnership to Corporation","corporation_single"=>"From Corporation to Single","corporation_partnership"=>"From Corporation to Partnership");
