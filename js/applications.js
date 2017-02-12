@@ -1545,7 +1545,7 @@ return;
 }
 
 var t = 'Business Licenses Reports';
-var c = 'form/search-application.php';
+var c = 'form/search-application.php?r=generate_report';
 var show = function() {
 
 $('#application_date_dt').datetimepicker({pickTime: false});
@@ -1579,8 +1579,9 @@ var application_mode_of_payment = $.trim($('#application_mode_of_payment').val()
 var application_date = $.trim($('#application_date').val());
 var application_month = $.trim($('#application_month').val());
 var application_year = $.trim($('#application_year').val());
+var business_status = $.trim($('#business_status').val());
 
-var par = '?application_no=' + application_no + '&application_reference_no=' + application_reference_no + '&applicant_fullname=' + applicant_fullname + '&application_form=' + application_form + '&application_organization_type=' + application_organization_type + '&application_mode_of_payment=' + application_mode_of_payment + '&application_date=' + application_date + '&application_month=' + application_month + '&application_year=' + application_year;
+var par = '?application_no=' + application_no + '&application_reference_no=' + application_reference_no + '&applicant_fullname=' + applicant_fullname + '&application_form=' + application_form + '&application_organization_type=' + application_organization_type + '&application_mode_of_payment=' + application_mode_of_payment + '&application_date=' + application_date + '&application_month=' + application_month + '&application_year=' + application_year + '&business_status=' + business_status;
 
 window.open('generate-reports.php' + par);
 

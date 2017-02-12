@@ -67,7 +67,24 @@
 	<div class="form-group">
 	<label for="application_year">Year</label>
 	<input type="text" class="form-control" id="application_year" placeholder="Enter year" value="<?php // echo date("Y"); ?>" onkeyup="mirrorFilter(this);">
-	</div>	
+	</div>
+	<?php
+	
+		if(isset($_GET['r'])) {
+			if ($_GET['r'] == "generate_report") {
+		
+	?>
+	<div class="form-group">
+	<label for="business_status">Business Status</label>
+	<select class="form-control" id="business_status">
+		<option value="">-</option>
+		<option value="delinquent">Delinquent</option>
+	</select>
+	</div>
+	<?php
+			}
+		}
+	?>
 	<div class="form-group" style="padding-bottom: 20px;">
 	<button id="search-application-button" type="submit" class="btn btn-primary pull-right">Search</button>
 	</div>	

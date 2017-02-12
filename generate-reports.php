@@ -8,7 +8,7 @@ $app_organization = array(""=>"","single_organization"=>"Single","partnership_or
 
 $app_mode_of_payment = array(""=>"","pay_annually"=>"Annually","pay_bi_annually"=>"Bi-Annually","pay_quarterly"=>"Quarterly");
 
-$columns = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL");
+$columns = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM");
 
 require_once 'Classes/PHPExcel.php';
 
@@ -35,6 +35,7 @@ $application_date = (isset($_GET['application_date'])) ? $_GET['application_date
 if ($application_date != "") $application_date = date("Y-m-d",strtotime($application_date));
 $application_month = (isset($_GET['application_month'])) ? $_GET['application_month'] : "0";
 $application_year = (isset($_GET['application_year'])) ? $_GET['application_year'] : "";
+$business_status = (isset($_GET['business_status'])) ? $_GET['business_status'] : "";
 
 $filter = " WHERE application_id != 0";
 $c1 = " and application_reference_no like '%$application_reference_no%'";
@@ -122,7 +123,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			
 			$objPHPExcel->getActiveSheet()->getRowDimension("1")->setRowHeight(25);
 			
-			$objPHPExcel->getActiveSheet()->getStyle('A1:AL1')->getFill()
+			$objPHPExcel->getActiveSheet()->getStyle('A1:AM1')->getFill()
 						->setFillType(PHPExcel_Style_Fill::FILL_SOLID)
 						->getStartColor()->setARGB('8A8A8A');
 						
@@ -137,15 +138,18 @@ $renewal_due = date("Y-01-20");
 		*/
 		$bs = $rec['business_status'];
 		
-		$bs = $rec['business_status'];
 		$succeeding_year = date("Y",strtotime("+1 Year",strtotime($rec['application_date'])));
 		$sql1 = "SELECT * FROM applications WHERE application_reference_no = '$rec[application_reference_no]' AND SUBSTRING(application_date,1,4) = $succeeding_year";
 		$rs1 = $db_con->query($sql1);
 		$rc1 = $rs1->num_rows;
 		if ($rc1 == 0) $bs = "delinquent";
 		else $bs = "operating";
-		if (date("Y",strtotime($rec['application_date'])) == date("Y")) $bs = "operating";		
+		if (date("Y",strtotime($rec['application_date'])) == date("Y")) $bs = "operating";
 
+		if ($business_status != "") {
+			if ($business_status == "delinquent") if ($bs != "delinquent") continue;
+		}		
+		
 		$total_amount_due = $rec['tax_due'] + $rec['others_due'];
 		// Add some data
 		$objPHPExcel->setActiveSheetIndex(0)
