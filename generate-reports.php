@@ -1,7 +1,5 @@
 <?php
 
-var_dump($_GET); exit();
-
 $app_form = array(""=>"","new_app"=>"New","renew_app"=>"Renewal","additional_app"=>"Additional");
 
 $app_amendment = array(""=>"","single_partnership"=>"From Single to Partnership","single_corporation"=>"From Single to Corporation","partnership_single"=>"From Partnership to Single","partnership_corporation"=>"From Partnership to Corporation","corporation_single"=>"From Corporation to Single","corporation_partnership"=>"From Corporation to Partnership");
@@ -37,7 +35,7 @@ $application_date = (isset($_GET['application_date'])) ? $_GET['application_date
 if ($application_date != "") $application_date = date("Y-m-d",strtotime($application_date));
 $application_month = (isset($_GET['application_month'])) ? $_GET['application_month'] : "0";
 $application_year = (isset($_GET['application_year'])) ? $_GET['application_year'] : "";
-$business_status = (isset($_GET['business_status'])) ? $_GET['business_status'] : "";
+$application_business_status = (isset($_GET['business_status'])) ? $_GET['business_status'] : "";
 
 $filter = " WHERE application_id != 0";
 $c1 = " and application_reference_no like '%$application_reference_no%'";
@@ -148,8 +146,8 @@ $renewal_due = date("Y-01-20");
 		else $bs = "operating";
 		if (date("Y",strtotime($rec['application_date'])) == date("Y")) $bs = "operating";
 
-		if ($business_status != "") {
-			if ($business_status == "delinquent") if ($bs != "delinquent") continue;
+		if ($application_business_status != "") {
+			if ($application_business_status == "delinquent") if ($bs != "delinquent") continue;
 		}		
 		
 		$total_amount_due = $rec['tax_due'] + $rec['others_due'];
