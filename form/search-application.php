@@ -64,10 +64,6 @@
 	<option value="12" <?php // if (date("m") == "12") echo "selected=\"selected\""; ?>>December</option>
 	</select>
 	</div>
-	<div class="form-group">
-	<label for="application_year">Year</label>
-	<input type="text" class="form-control" id="application_year" placeholder="Enter year" value="<?php // echo date("Y"); ?>" onkeyup="mirrorFilter(this);">
-	</div>
 	<?php
 	
 		if(isset($_GET['r'])) {
@@ -85,6 +81,10 @@
 			}
 		}
 	?>
+	<div class="form-group">
+	<label for="application_year">Year</label>
+	<input type="text" class="form-control" id="application_year" placeholder="Enter year" value="<?php // echo date("Y"); ?>" onkeyup="mirrorFilter(this);">
+	</div>	
 	<div class="form-group" style="padding-bottom: 20px;">
 	<button id="search-application-button" type="submit" class="btn btn-primary pull-right">Search</button>
 	</div>	
