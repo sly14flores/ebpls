@@ -112,7 +112,7 @@ margin: .25in;
 <table>
 <tr><td colspan="2" style="text-indent: 50px;">In accordance with pertinent provisions of the Revenue Code of the Municipality, the PERMIT may be revoked should the Permitte refuse to pay an indebtedness or liability to the municipality or abuse his privilege to do business in the municipality to the injury of public morale or peace or when the place where such business is established is being conducted in a disorderly manner, a nuisance or is permitted to be used as a resort for shady characters, criminals or women of ill repute.</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td colspan="2" style="text-indent: 50px;"><p>Issued this&nbsp;&nbsp;&nbsp;<?php echo addOrdinalNumberSuffix((int)date("j",strtotime($rec['date_of_application']))); ?>&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;<?php echo date("F, Y",strtotime($rec['date_of_application'])); ?></p></td></tr>
+<tr><td colspan="2" style="text-indent: 50px;"><p>Issued this&nbsp;&nbsp;&nbsp;<?php echo addOrdinalNumberSuffix((int)date("j",strtotime($rec['date_of_application']))); ?>&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;<?php echo date("F, Y",strtotime($rec['date_of_application'])); ?>&nbsp;&nbsp;at Bacnotan, La Union</p></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td>&nbsp;<br><br><br><br><br></td><td style="position: relative;"><div style="width: 300px; position: absolute; top: 40px; right: 0;" class="signatory"><p style="text-align: center; font-weight: bold;"><?php echo strtoupper($rec['signatory']); ?></p><p style="text-align: center; font-weight: bold;"><?php echo $rec['signatory_title']; ?></p></div></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
